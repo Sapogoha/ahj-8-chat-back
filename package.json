@@ -1,0 +1,28 @@
+{
+  "name": "ahj-8-chat-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "forever server.js",
+    "watch": "forever -w server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sapogoha/ahj-8-chat-back.git"
+  },
+  "keywords": [],
+  "author": "sapogoha",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.3.0",
+    "forever": "^4.0.3",
+    "koa": "^2.13.4",
+    "uuid": "^8.3.2",
+    "ws": "^7.4.2"
+  },
+  "engines": {
+    "node": "11.x"
+  }
+}
