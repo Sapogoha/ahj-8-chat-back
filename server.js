@@ -18,6 +18,7 @@ const port = process.env.PORT || 7070;
 const server = http.createServer(app.callback());
 const wsServer = new WS.Server({ server });
 const users = [];
+const messages = [];
 
 wsServer.on('connection', (ws) => {
   ws.on('message', (msg) => {
@@ -50,11 +51,30 @@ wsServer.on('connection', (ws) => {
                 event: 'notification - entered',
                 notification: `User ${username} entered the chat`,
                 newUser: username,
-                id: id,
+                id,
               })
             );
           });
       }
+    }
+    if (command.event === 'newMessage') {
+      const { message, username, timestamp } = command;
+      const id = users.find((user) => user.username === username).id;
+      messages.push({ username, id, message, timestamp });
+
+      Array.from(wsServer.clients)
+        .filter((o) => o.readyState === WS.OPEN)
+        .forEach((o) => {
+          o.send(
+            JSON.stringify({
+              event: 'newMessage',
+              message,
+              username,
+              id,
+              timestamp,
+            })
+          );
+        });
     }
   });
 

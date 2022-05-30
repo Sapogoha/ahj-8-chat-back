@@ -4,4 +4,4 @@
 
 Практическое задание после лекции "EventSource, Websockets"
 
-[Heroku](https://github.com/Sapogoha/ahj-8-chat-back)
+[Heroku](https://ahj-8-chat-back.herokuapp.com/)
